@@ -1,0 +1,12 @@
+-- use the builtwith module to check the technology used in the website -- 
+
+>> import builtwith
+>> builtwith.parse('your_url')
+
+-- checking the owner details of the sit --
+
+>> import whois
+>> print whois.whois('your_site_url')
+
+
+
