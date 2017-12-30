@@ -22,7 +22,7 @@ def download(url, user_agent='wswp', num_retries = 2):
         
     return html
 
-def crawl_sitemap(url):
+'''def crawl_sitemap(url):
     #logging.info('something')
     # downloading the sitemap file
     sitemap = download(url)
@@ -33,20 +33,32 @@ def crawl_sitemap(url):
     # downloading each link
     for link in links:
         html = download(link)
-        
+'''      
 
 #crawl_sitemap('http://example.webscraping.com/sitemap.xml')
 
 # using the itertools to download the links in the website
 
+# give a limit for the maximum number of errors
+max_errors = 5
+
+# init the errors occured
+errors_occurred = 0
+
+
 for page in itertools.count(1):
     url = 'http://example.webscraping.com/places/default/view/-%d' % page
+   
     html = download (url)
     if html is None:
-        break
+        errors_occurred+=1;
+
+        if errors_occurred == max_errors:
+            break
     else:
-        #print html
         pass
+    
+#print download('http://www.nuware.com')
 
 
 
